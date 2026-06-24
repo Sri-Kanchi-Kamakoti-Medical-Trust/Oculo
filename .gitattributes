@@ -1,0 +1,6 @@
+# Normalize line endings. Keep shell scripts LF so they run on Linux/GPU hosts.
+* text=auto
+*.sh text eol=lf
+*.py text eol=lf
+*.csv text eol=lf
+*.md text eol=lf
