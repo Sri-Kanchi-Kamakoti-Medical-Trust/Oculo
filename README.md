@@ -72,14 +72,11 @@ pip install -r requirements.txt
 
 `data.csv` and the `splits/` CSVs in this repo match the released dataset.
 
-**Preprocessing.** The released images already have machine text overlays
-(patient identifiers, timestamps, scan parameters) removed — via HSV color
-masking + Navier-Stokes inpainting, with the diagnostic A-scan waveform
-preserved — so they contain **no burned-in identifiers**. `src/preprocess.py`
-then removes residual UI borders with a size-dependent crop (top 20% / bottom
-6% / left 9% / right 20%) and resizes to the training resolution. CNNs train at
-512×512; ViT-B-16 and the foundation models resize the same images to 224×224 at
-load time, so a single preprocessed set serves every model.
+**Preprocessing.** The released images are anonymized, with patient identifiers
+removed. `src/preprocess.py` crops residual interface borders and resizes images
+to the training resolution: CNNs (EfficientNet-B0, ResNet50, VGG-19-BN) use
+512×512, while ViT-B-16 and the foundation models use 224×224, so a single
+preprocessed set serves every model.
 
 ---
 
@@ -165,6 +162,13 @@ state-space backbone and needs its source plus extra packages:
 git clone <openus-repo-url> OpenUS
 pip install mamba-ssm einops fvcore
 ```
+
+---
+
+## License
+
+Code is released under the MIT License (see [LICENSE](LICENSE)). The dataset is
+released separately on Hugging Face under CC BY-SA 4.0.
 
 ---
 
