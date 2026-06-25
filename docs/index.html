@@ -61,6 +61,8 @@
     .fig img { border-radius: 6px; }
     .fig-caption { color: #555; font-size: 0.9rem; text-align: center; margin-top: 0.5rem; }
     .button.is-disabled { opacity: 0.6; cursor: default; pointer-events: none; }
+    .publication-links { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; }
+    .publication-links .link-block { margin: 0; }
     table.tight td, table.tight th { padding: 0.35rem 0.7rem; }
   </style>
 </head>
@@ -92,10 +94,10 @@
 
         <div class="publication-links" style="margin-top:1.1rem;">
           <span class="link-block">
-            <span class="external-link button is-small is-rounded is-dark is-disabled" title="Available after the MICCAI 2026 proceedings are published">
+            <a class="external-link button is-small is-rounded is-dark is-disabled" title="Available after the MICCAI 2026 proceedings are published">
               <span class="icon"><i class="fas fa-file-pdf"></i></span>
               <span>Paper (coming soon)</span>
-            </span>
+            </a>
           </span>
           <span class="link-block">
             <a href="https://github.com/Sri-Kanchi-Kamakoti-Medical-Trust/OculoBenchmark" target="_blank" class="external-link button is-small is-rounded is-dark">
@@ -137,10 +139,19 @@
         emergency settings. Prior deep-learning studies rely on private institutional datasets, which limits
         reproducibility and objective benchmarking.
       </p>
+    </div>
+  </section>
+
+  <!-- Motivation -->
+  <section class="section">
+    <div class="container is-narrow content has-text-justified">
+      <h2 class="section-title">Motivation</h2>
       <p>
-        We introduce <i>Oculo</i>, the first publicly available ocular ultrasound dataset annotated for five
-        ophthalmic abnormalities, and benchmark a range of deep-learning backbones and domain-specific foundation
-        models to establish standardized baselines.
+        Access to ophthalmologists skilled in ocular ultrasound (OUS) interpretation is limited in
+        resource-constrained settings, and progress in automated OUS analysis using deep learning (DL) has been
+        constrained by the lack of public annotated datasets. This work introduces <i>Oculo</i>, the first public
+        dataset of ocular ultrasounds labeled for five vitreoretinal abnormalities. We systematically evaluate DL
+        models on our dataset and define avenues for future research in DL-based automated ocular ultrasound analysis.
       </p>
     </div>
   </section>
