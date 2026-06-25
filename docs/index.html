@@ -64,6 +64,8 @@
     .button.is-disabled { opacity: 0.6; cursor: default; pointer-events: none; }
     .publication-links { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; }
     .publication-links .link-block { margin: 0; }
+    .content a { color: #2563eb; text-decoration: underline; }
+    .content a:hover { color: #1d4ed8; }
     table.tight td, table.tight th { padding: 0.35rem 0.7rem; }
   </style>
 </head>
@@ -169,14 +171,10 @@
         </tbody>
       </table>
       <p>
-        Machine-generated text overlays (patient identifiers, timestamps, scan parameters) were removed via HSV color
-        masking and Navier&ndash;Stokes inpainting, while the diagnostic A-scan waveform was preserved &mdash; the
-        released images contain <strong>no burned-in patient identifiers</strong>. A fixed train/validation/test split
-        (1,222 / 163 / 245) is provided with the dataset.
-      </p>
-      <p>
-        The dataset is available on
-        <a href="https://huggingface.co/datasets/SankaraEyeHospital/Oculo" target="_blank">Hugging Face</a>.
+        All released images are anonymized, with patient identifiers removed. Informed consent was obtained from all
+        patients, and the study protocol was approved by the institutional review board. A fixed train/validation/test
+        split (1,222 / 163 / 245) is provided with the dataset, available on
+        <a href="https://huggingface.co/datasets/SankaraEyeHospital/Oculo" target="_blank">Hugging&nbsp;Face</a>.
       </p>
     </div>
   </section>
