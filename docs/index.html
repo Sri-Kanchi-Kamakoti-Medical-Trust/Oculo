@@ -23,42 +23,49 @@
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Sankara Eye Hospital">
-  <meta property="og:title" content="Oculo: A Multilabel Dataset for Identification of Ocular Abnormalities from Ultrasound Images">
+  <meta property="og:title" content="Oculo: A Multilabel Ocular Ultrasound Dataset">
   <meta property="og:description" content="A public multi-label ocular B-scan ultrasound dataset and benchmark (MICCAI 2026).">
   <meta property="og:image" content="static/images/sample_images.png">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Oculo: A Multilabel Ocular Ultrasound Dataset">
   <meta name="twitter:description" content="A public multi-label ocular B-scan ultrasound dataset and benchmark (MICCAI 2026).">
   <meta name="twitter:image" content="static/images/sample_images.png">
 
-  <title>Oculo: A Multilabel Dataset for Ocular Abnormalities from Ultrasound | MICCAI 2026</title>
+  <title>Oculo: A Multilabel Ocular Ultrasound Dataset | MICCAI 2026</title>
 
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   </noscript>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
+
+  <style>
+    /* Smaller, calmer typography (override the template's larger defaults) */
+    h1.title.publication-title { font-size: 1.8rem !important; line-height: 1.3; font-weight: 700; }
+    .publication-authors { font-size: 1.05rem !important; }
+    .publication-authors .author-block { font-size: 1.05rem; }
+    .section { padding: 2.2rem 1.5rem; }
+    .section-title { font-size: 1.5rem !important; font-weight: 700; margin-bottom: 0.9rem; }
+    .content, .content p, body { font-size: 1.02rem; }
+    .container.is-narrow { max-width: 880px; margin: 0 auto; }
+    .fig { margin: 1.2rem 0; }
+    .fig img { border-radius: 6px; }
+    .fig-caption { color: #555; font-size: 0.9rem; text-align: center; margin-top: 0.5rem; }
+    .button.is-disabled { opacity: 0.6; cursor: default; pointer-events: none; }
+    table.tight td, table.tight th { padding: 0.35rem 0.7rem; }
+  </style>
 </head>
 <body>
 
-  <!-- Scroll to Top Button -->
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
   </button>
@@ -66,48 +73,42 @@
   <!-- Hero / Title -->
   <section class="hero">
     <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title"><i>Oculo</i>: A Multilabel Dataset for Identification of Ocular Abnormalities from Ultrasound Images</h1>
+      <div class="container is-narrow has-text-centered">
+        <h1 class="title publication-title"><i>Oculo</i>: A Multilabel Dataset for Identification of Ocular Abnormalities from Ultrasound Images</h1>
 
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><a href="#">Sneha Kumari</a><sup>1</sup>,</span>
-              <span class="author-block"><a href="#">Payal Shah</a><sup>2</sup>,</span>
-              <span class="author-block"><a href="#">Vaibhav Ganatra</a><sup>3</sup>,</span>
-              <span class="author-block"><a href="#">Meenakshi Mahesh</a><sup>2</sup>,</span>
-              <span class="author-block"><a href="#">Mohit Jain</a><sup>1</sup></span>
-            </div>
+        <div class="publication-authors">
+          <span class="author-block">Sneha Kumari<sup>1</sup>,</span>
+          <span class="author-block">Payal Shah<sup>2</sup>,</span>
+          <span class="author-block">Vaibhav Ganatra<sup>3</sup>,</span>
+          <span class="author-block">Meenakshi Mahesh<sup>2</sup>,</span>
+          <span class="author-block">Mohit Jain<sup>1</sup></span>
+        </div>
+        <div class="publication-authors" style="margin-top:0.4rem;">
+          <span class="author-block"><sup>1</sup>Microsoft Research &nbsp;&nbsp; <sup>2</sup>Sankara Eye Hospital &nbsp;&nbsp; <sup>3</sup>University of Toronto</span>
+        </div>
+        <div class="publication-authors" style="margin-top:0.3rem;">
+          <span class="author-block" style="font-weight:600;">MICCAI 2026</span>
+        </div>
 
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>Microsoft Research &nbsp;&nbsp; <sup>2</sup>Sankara Eye Hospital &nbsp;&nbsp; <sup>3</sup>University of Toronto</span>
-              <br>
-              <span class="author-block">MICCAI 2026</span>
-            </div>
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <span class="link-block">
-                  <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://github.com/Sri-Kanchi-Kamakoti-Medical-Trust/OculoBenchmark" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fab fa-github"></i></span>
-                    <span>Code</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://huggingface.co/datasets/SankaraEyeHospital/Oculo" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fas fa-database"></i></span>
-                    <span>Dataset</span>
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
+        <div class="publication-links" style="margin-top:1.1rem;">
+          <span class="link-block">
+            <span class="external-link button is-small is-rounded is-dark is-disabled" title="Available after the MICCAI 2026 proceedings are published">
+              <span class="icon"><i class="fas fa-file-pdf"></i></span>
+              <span>Paper (coming soon)</span>
+            </span>
+          </span>
+          <span class="link-block">
+            <a href="https://github.com/Sri-Kanchi-Kamakoti-Medical-Trust/OculoBenchmark" target="_blank" class="external-link button is-small is-rounded is-dark">
+              <span class="icon"><i class="fab fa-github"></i></span>
+              <span>Code</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="https://huggingface.co/datasets/SankaraEyeHospital/Oculo" target="_blank" class="external-link button is-small is-rounded is-dark">
+              <span class="icon"><i class="fas fa-database"></i></span>
+              <span>Dataset</span>
+            </a>
+          </span>
         </div>
       </div>
     </div>
@@ -115,94 +116,118 @@
 
   <!-- Teaser -->
   <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
+    <div class="container is-narrow">
+      <div class="fig">
         <img src="static/images/sample_images.png" alt="Representative B-scan images for each annotated abnormality"/>
-        <h2 class="subtitle has-text-centered">
-          <i>Oculo</i> comprises 1,630 ocular B-scan ultrasound images from 1,242 patients, annotated for five
-          ophthalmic abnormalities (and three additional rare conditions).
-        </h2>
+        <p class="fig-caption">Representative B-scan ultrasound images for the five evaluated ocular abnormalities.</p>
       </div>
     </div>
   </section>
 
-  <!-- Abstract -->
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              Ocular ultrasound is a critical imaging modality for assessing vitreoretinal pathologies such as
-              retinal detachment, vitreous hemorrhage, and intraocular tumors. However, interpretation requires
-              specialized expertise and exhibits substantial inter-rater variability, limiting access in
-              resource-constrained settings. Although prior studies have applied deep learning to ocular ultrasound
-              analysis, progress has been constrained by the lack of public datasets and standardized benchmarks.
-              In this work, we introduce <i>Oculo</i>, a publicly available multi-label dataset comprising 1,630
-              B-scan images from 1,242 patients, annotated for five ophthalmic abnormalities. We systematically
-              benchmark four deep-learning backbones and three domain-specific foundation models across two task
-              settings and three training strategies. We find that EfficientNet-B0 with full fine-tuning achieves
-              the best mean performance (F1 = 0.77) across pathology labels. <i>Oculo</i> provides a foundation for
-              standardized evaluation and future methodological advances in automated ocular ultrasound analysis.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Benchmark results -->
+  <!-- Introduction -->
   <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-full">
-          <h2 class="title is-3">Benchmark</h2>
-          <div class="content has-text-justified">
-            <p>
-              We evaluate four image-classification backbones (EfficientNet-B0, ResNet50, VGG-19-BN, ViT-B-16) under
-              single-task and multi-task settings, and three domain-specific foundation models (OpenUS, USFM, VisionFM)
-              under full fine-tuning, linear probing, and linear-probe-then-finetune. EfficientNet-B0 is the strongest
-              single-task model, while ViT-B-16 benefits most from multi-task training. Foundation-model linear probes
-              reach performance comparable to the best task-specific model.
-            </p>
-          </div>
-          <div class="columns is-centered">
-            <div class="column">
-              <img src="static/images/efficientnet_f1_bar.png" alt="EfficientNet-B0 per-label F1 (single vs multi-task)"/>
-            </div>
-            <div class="column">
-              <img src="static/images/ViT_f1_bar.png" alt="ViT-B-16 per-label F1 (single vs multi-task)"/>
-            </div>
-          </div>
-          <p class="subtitle is-6 has-text-centered">
-            Per-label F1 for EfficientNet-B0 (left) and ViT-B-16 (right), single-task vs multi-task.
-          </p>
-          <div class="columns is-centered">
-            <div class="column is-four-fifths">
-              <img src="static/images/fm_comparison_f1.png" alt="Foundation models vs EfficientNet-B0 per-label F1"/>
-              <p class="subtitle is-6 has-text-centered">
-                Foundation-model linear probes vs EfficientNet-B0 (full fine-tuning), per label.
-              </p>
-            </div>
+    <div class="container is-narrow content has-text-justified">
+      <h2 class="section-title">Introduction</h2>
+      <p>
+        Ocular ultrasound (B-scan) is the preferred imaging modality for assessing vitreoretinal health, especially
+        when media opacities obscure direct visualization. It is widely used to diagnose vitreous hemorrhage and
+        retinal detachment, to detect and monitor intraocular tumors, and to identify foreign bodies after trauma.
+        However, interpretation requires specialized training, exhibits substantial inter-rater variability, and
+        specialists are typically available only in tertiary centers &mdash; limiting access in primary-care and
+        emergency settings. Prior deep-learning studies rely on private institutional datasets, which limits
+        reproducibility and objective benchmarking.
+      </p>
+      <p>
+        We introduce <i>Oculo</i>, the first publicly available ocular ultrasound dataset annotated for five
+        ophthalmic abnormalities, and benchmark a range of deep-learning backbones and domain-specific foundation
+        models to establish standardized baselines.
+      </p>
+    </div>
+  </section>
+
+  <!-- Dataset -->
+  <section class="section hero is-light">
+    <div class="container is-narrow content has-text-justified">
+      <h2 class="section-title">Dataset</h2>
+      <p>
+        <i>Oculo</i> comprises <strong>1,630 B-scan images from 1,242 patients</strong>, acquired over approximately
+        four years on an Appasamy Marvel II ultrasound system (12&nbsp;MHz) and exported as 900&times;900 PNGs. Two
+        senior ophthalmologists independently annotated eight binary labels, with ambiguous cases adjudicated by a
+        senior retina specialist. Five labels are evaluated; three rare conditions are released to support future
+        research.
+      </p>
+      <table class="table is-fullwidth is-striped tight">
+        <thead>
+          <tr><th>Label</th><th>Abbr.</th><th class="has-text-right">Positives</th><th class="has-text-centered">Evaluated</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Vitreous Dot Echo</td><td>VDE</td><td class="has-text-right">508</td><td class="has-text-centered">&#10003;</td></tr>
+          <tr><td>Membranous Echo</td><td>ME</td><td class="has-text-right">339</td><td class="has-text-centered">&#10003;</td></tr>
+          <tr><td>Retinal Detachment</td><td>RD</td><td class="has-text-right">186</td><td class="has-text-centered">&#10003;</td></tr>
+          <tr><td>Mass Lesion</td><td>ML</td><td class="has-text-right">115</td><td class="has-text-centered">&#10003;</td></tr>
+          <tr><td>Abnormal Contour</td><td>AC</td><td class="has-text-right">92</td><td class="has-text-centered">&#10003;</td></tr>
+          <tr><td>Posterior Vitreous Detachment</td><td>PVD</td><td class="has-text-right">17</td><td class="has-text-centered">rare</td></tr>
+          <tr><td>Choroidal Detachment</td><td>CD</td><td class="has-text-right">29</td><td class="has-text-centered">rare</td></tr>
+          <tr><td>Phthisis Bulbi</td><td>PB</td><td class="has-text-right">19</td><td class="has-text-centered">rare</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Machine-generated text overlays (patient identifiers, timestamps, scan parameters) were removed via HSV color
+        masking and Navier&ndash;Stokes inpainting, while the diagnostic A-scan waveform was preserved &mdash; the
+        released images contain <strong>no burned-in patient identifiers</strong>. A fixed train/validation/test split
+        (1,222 / 163 / 245) is provided with the dataset.
+      </p>
+      <p>
+        The dataset is available on
+        <a href="https://huggingface.co/datasets/SankaraEyeHospital/Oculo" target="_blank">Hugging Face</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Benchmark -->
+  <section class="section">
+    <div class="container is-narrow content has-text-justified">
+      <h2 class="section-title">Benchmark</h2>
+      <p>
+        We benchmark four image-classification backbones (EfficientNet-B0, ResNet50, VGG-19-BN, ViT-B-16) under
+        single-task and multi-task settings, and three domain-specific foundation models (OpenUS, USFM, VisionFM)
+        under full fine-tuning, linear probing, and linear-probe-then-finetune. EfficientNet-B0 achieves the best
+        single-task performance (mean F1 = 0.92), while ViT-B-16 benefits most from multi-task training. Foundation-model
+        linear probes reach performance comparable to the best task-specific model.
+      </p>
+      <div class="columns is-centered">
+        <div class="column">
+          <div class="fig">
+            <img src="static/images/efficientnet_f1_bar.png" alt="EfficientNet-B0 per-label F1"/>
           </div>
         </div>
+        <div class="column">
+          <div class="fig">
+            <img src="static/images/ViT_f1_bar.png" alt="ViT-B-16 per-label F1"/>
+          </div>
+        </div>
+      </div>
+      <p class="fig-caption">Per-label F1 for EfficientNet-B0 (left) and ViT-B-16 (right), single-task vs multi-task.</p>
+      <div class="fig" style="margin-top:1.4rem;">
+        <img src="static/images/fm_comparison_f1.png" alt="Foundation models vs EfficientNet-B0 per-label F1"/>
+        <p class="fig-caption">Foundation-model linear probes vs EfficientNet-B0 (full fine-tuning), per label.</p>
       </div>
     </div>
   </section>
 
   <!-- BibTeX -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
+  <section class="section hero is-light" id="BibTeX">
+    <div class="container is-narrow content">
       <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
+        <h2 class="section-title">Citation</h2>
         <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
+          <i class="fas fa-copy"></i><span class="copy-text">Copy</span>
         </button>
       </div>
+      <p style="font-size:0.95rem;color:#555;">The camera-ready paper will be linked here after the MICCAI 2026 proceedings are published.</p>
       <pre id="bibtex-code"><code>@inproceedings{oculo2026,
   title     = {Oculo: A Multilabel Dataset for Identification of Ocular Abnormalities from Ultrasound Images},
+  author    = {Kumari, Sneha and Shah, Payal and Ganatra, Vaibhav and Mahesh, Meenakshi and Jain, Mohit},
   booktitle = {Medical Image Computing and Computer Assisted Intervention (MICCAI)},
   year      = {2026}
 }</code></pre>
@@ -212,11 +237,13 @@
   <footer class="footer">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-8">
+        <div class="column is-8 has-text-centered">
           <div class="content">
-            <p>
-              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-              This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            <p style="font-size:0.9rem;">
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+              Licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0 License</a>.
             </p>
           </div>
         </div>
