@@ -11,6 +11,8 @@ and three domain-specific foundation models.
   Three additional rare labels (PVD, CD, Phthisis) are released but excluded
   from evaluation.
 
+---
+
 ## Models
 
 | Setting | Models |
@@ -19,6 +21,8 @@ and three domain-specific foundation models.
 | Foundation models (Table 4, Full-FT / Linear-Probe / LP&rarr;FT) | OpenUS, USFM, VisionFM |
 
 CNNs train at 512x512; ViT-B-16 and the foundation models at 224x224.
+
+---
 
 ## Repository layout
 
@@ -36,10 +40,12 @@ CNNs train at 512x512; ViT-B-16 and the foundation models at 224x224.
 │   ├── preprocess.py        # crop + resize released images for training
 │   ├── aggregate_seeds.py   # per-seed metrics -> mean +/- std
 │   └── figures/             # paper figure scripts (Fig 2, Fig 3)
-├── run_seeds.sh             # reproduce every reported number over seeds 0-4
+├── run_seeds.sh             # train all reported models over seeds 0-4
 ├── docs/                    # preprocessing + foundation-model weight notes
-├── requirements.txt  .env.example  .gitignore  LICENSE
+└── requirements.txt
 ```
+
+---
 
 ## Setup
 
@@ -47,8 +53,9 @@ CNNs train at 512x512; ViT-B-16 and the foundation models at 224x224.
 python -m venv .venv && source .venv/bin/activate   # (Windows: .venv\Scripts\activate)
 pip install -r requirements.txt
 # For GPU training, install a CUDA build of torch/torchvision from pytorch.org.
-cp .env.example .env
 ```
+
+---
 
 ## Data
 
@@ -61,6 +68,8 @@ cp .env.example .env
    ```
 
 `data.csv` and the `splits/` CSVs in this repo match the released dataset.
+
+---
 
 ## Training
 
@@ -82,28 +91,19 @@ python src/train.py --model usfm --experiment-tag mt_lpft \
     --exclude-classes pvd,cd,phthisis --freeze-backbone --unfreeze-epoch 10 --seed 0
 ```
 
-Each run writes metrics, predictions, confusion matrices and a model checkpoint
-to `results/<model>__<tag>/...`.
+Each run writes metrics, predictions, confusion matrices, and a checkpoint to
+`results/<model>__<tag>/`. Training uses focal loss (γ=2.0), AdamW (lr=1e-4,
+weight-decay=1e-4) with a cosine schedule, batch size 8, and up to 50 epochs
+with early stopping.
 
-Training protocol: focal loss (γ=2.0), AdamW (lr=1e-4, weight-decay=1e-4),
-cosine schedule, batch size 8, up to 50 epochs with early stopping (patience 7),
-fixed decision threshold 0.5. ImageNet initialization for CNNs/ViT; pretrained
-weights for the foundation models.
-
-## Reproducing the paper numbers (mean over 5 seeds)
-
-All reported metrics are the **mean over seeds 0-4 on the fixed split** in
-`splits/`. The split is held constant; only the random seed (head
-initialization, batch ordering, stochastic augmentation) varies across runs.
+Reported numbers are the mean over seeds 0–4 on the fixed split:
 
 ```bash
-bash run_seeds.sh                               # all models, seeds 0-4
-python src/aggregate_seeds.py --results-dir results   # mean +/- std per experiment
+bash run_seeds.sh                                      # train all models, seeds 0-4
+python src/aggregate_seeds.py --results-dir results    # aggregate to mean ± std
 ```
 
-`aggregate_seeds.py` writes `aggregate_metrics.json` into each experiment
-directory. Table 3 single-task rows are the mean across the five
-`st_fullft_<label>` experiments.
+---
 
 ## Figures
 
@@ -112,17 +112,15 @@ python src/figures/plot_single_vs_multitask.py --out-dir figures   # Fig 2
 python src/figures/plot_fm_comparison.py --out-dir figures         # Fig 3
 ```
 
+---
+
 ## Foundation-model weights
 
 The FM checkpoints (~2.8 GB) are not in git. See
 [docs/foundation_models.md](docs/foundation_models.md) for download and setup.
 The four backbone results (Table 3) need no external weights.
 
-## License
-
-No license is currently applied to this code (all rights reserved). Please
-contact the authors for usage permissions. The dataset is released separately
-on Hugging Face under its own license (see the dataset card).
+---
 
 ## Citation
 
