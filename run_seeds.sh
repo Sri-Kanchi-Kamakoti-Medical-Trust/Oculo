@@ -9,7 +9,7 @@
 #     python src/aggregate_seeds.py --results-dir results
 #
 # Prerequisites:
-#   - Preprocessed images:  python src/preprocess.py --src <release-900> --dst data/images
+#   - Preprocessed images:  python src/preprocess.py --src <images> --dst data/images
 #   - Foundation-model weights in pretrained/ (see docs/foundation_models.md)
 #     (only needed for the USFM / VisionFM / OpenUS runs)
 #

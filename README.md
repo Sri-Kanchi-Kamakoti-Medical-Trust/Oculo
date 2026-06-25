@@ -11,6 +11,9 @@ and three domain-specific foundation models.
   Three additional rare labels (PVD, CD, Phthisis) are released but excluded
   from evaluation.
 
+<p align="center"><img src="assets/sample_images_combined.png" width="90%"/></p>
+<p align="center"><em>Representative B-scan images for each annotated abnormality.</em></p>
+
 ---
 
 ## Models
@@ -40,8 +43,8 @@ CNNs train at 512x512; ViT-B-16 and the foundation models at 224x224.
 │   ├── preprocess.py        # crop + resize released images for training
 │   ├── aggregate_seeds.py   # per-seed metrics -> mean +/- std
 │   └── figures/             # paper figure scripts (Fig 2, Fig 3)
+├── assets/                  # figures embedded in this README
 ├── run_seeds.sh             # train all reported models over seeds 0-4
-├── docs/                    # preprocessing + foundation-model weight notes
 └── requirements.txt
 ```
 
@@ -59,15 +62,24 @@ pip install -r requirements.txt
 
 ## Data
 
-1. Download the dataset (1,630 `release-900` PNGs + `data.csv` + `splits/`)
-   from [Hugging Face](https://huggingface.co/datasets/SankaraEyeHospital/Oculo).
-2. Preprocess images for training:
+1. Download the dataset (1,630 PNG images + `data.csv` + `splits/`) from
+   [Hugging Face](https://huggingface.co/datasets/SankaraEyeHospital/Oculo).
+2. Preprocess the images for training:
 
    ```bash
-   python src/preprocess.py --src path/to/release-900 --dst data/images --size 512
+   python src/preprocess.py --src path/to/images --dst data/images --size 512
    ```
 
 `data.csv` and the `splits/` CSVs in this repo match the released dataset.
+
+**Preprocessing.** The released images already have machine text overlays
+(patient identifiers, timestamps, scan parameters) removed — via HSV color
+masking + Navier-Stokes inpainting, with the diagnostic A-scan waveform
+preserved — so they contain **no burned-in identifiers**. `src/preprocess.py`
+then removes residual UI borders with a size-dependent crop (top 20% / bottom
+6% / left 9% / right 20%) and resizes to the training resolution. CNNs train at
+512×512; ViT-B-16 and the foundation models resize the same images to 224×224 at
+load time, so a single preprocessed set serves every model.
 
 ---
 
@@ -105,20 +117,54 @@ python src/aggregate_seeds.py --results-dir results    # aggregate to mean ± st
 
 ---
 
-## Figures
+## Results
+
+Single-task vs multi-task per-label F1 (EfficientNet-B0, left; ViT-B-16, right):
+
+<p align="center">
+  <img src="assets/efficientnet_f1_bar.png" width="45%"/>
+  <img src="assets/ViT_f1_bar.png" width="45%"/>
+</p>
+
+Foundation-model linear probes vs EfficientNet-B0 (full fine-tuning), per label:
+
+<p align="center"><img src="assets/fm_comparison_f1.png" width="85%"/></p>
+
+Regenerate these figures with:
 
 ```bash
-python src/figures/plot_single_vs_multitask.py --out-dir figures   # Fig 2
-python src/figures/plot_fm_comparison.py --out-dir figures         # Fig 3
+python src/figures/plot_single_vs_multitask.py --out-dir assets   # EfficientNet + ViT
+python src/figures/plot_fm_comparison.py --out-dir assets         # foundation models
 ```
 
 ---
 
 ## Foundation-model weights
 
-The FM checkpoints (~2.8 GB) are not in git. See
-[docs/foundation_models.md](docs/foundation_models.md) for download and setup.
-The four backbone results (Table 3) need no external weights.
+The four backbone results need no external weights. The three foundation models
+are evaluated from their official pretrained checkpoints (~2.8 GB total, not
+stored in git). Download them into a local `pretrained/` directory:
+
+| Model    | `--model`  | Architecture         | Default weight path                  |
+|----------|------------|----------------------|--------------------------------------|
+| USFM     | `usfm`     | BEiT ViT-B/16        | `pretrained/USFM_latest.pth`         |
+| VisionFM | `visionfm` | ViT-B/16 (B-US enc.) | `pretrained/VisionFM_Ultrasound.pth` |
+| OpenUS   | `openus`   | VMamba-Small (SSM)   | `pretrained/OpenUS_S.pth`            |
+
+Override a path with `--pretrained-path /path/to/weights.pth`.
+
+- **USFM** — Jiao et al., *Medical Image Analysis* 2024 (`USFM_latest.pth`).
+- **VisionFM** — Qiu et al., *NEJM AI* 2024 (B-Ultrasound encoder checkpoint).
+- **OpenUS** — Zheng et al., 2024 (OpenUS-S DINO teacher checkpoint).
+
+USFM and VisionFM use standard `timm` ViT backbones. OpenUS uses a VMamba
+state-space backbone and needs its source plus extra packages:
+
+```bash
+# clone the OpenUS repo into the project root so OpenUS/vmamba_models is importable
+git clone <openus-repo-url> OpenUS
+pip install mamba-ssm einops fvcore
+```
 
 ---
 

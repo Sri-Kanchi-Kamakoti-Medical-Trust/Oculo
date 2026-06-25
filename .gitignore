@@ -6,7 +6,6 @@ data/images/
 pretrained/
 *.pth
 *.pt
-release-900/
 
 # --- Experiment outputs ---
 results/

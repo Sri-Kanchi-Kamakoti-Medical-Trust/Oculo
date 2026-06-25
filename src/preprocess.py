@@ -1,8 +1,8 @@
 """
 Preprocess released Oculo images for model training.
 =====================================================
-The released dataset (Hugging Face: SankaraEyeHospital/Oculo) ships
-``release-900`` images: machine text/overlay already removed via HSV color
+The released dataset (Hugging Face: SankaraEyeHospital/Oculo) ships the
+anonymized images: machine text/overlay already removed via HSV color
 masking + Navier-Stokes inpainting, with the A-scan graph preserved, resized
 to 900x900.
 
@@ -16,7 +16,7 @@ foundation models resize this same cropped image to 224px at load time, so a
 single 512px preprocessed set is sufficient for every model.
 
 Usage:
-  python src/preprocess.py --src path/to/release-900 --dst data/images --size 512
+  python src/preprocess.py --src path/to/images --dst data/images --size 512
 """
 
 import argparse
@@ -42,7 +42,7 @@ def crop_margins(img):
 def main():
     ap = argparse.ArgumentParser(description="Crop + resize released images for training")
     ap.add_argument("--src", type=str, required=True,
-                    help="Directory of released {image_id}.png images (release-900).")
+                    help="Directory of released {image_id}.png images.")
     ap.add_argument("--dst", type=str, default="data/images",
                     help="Output directory for preprocessed images.")
     ap.add_argument("--size", type=int, default=512,
