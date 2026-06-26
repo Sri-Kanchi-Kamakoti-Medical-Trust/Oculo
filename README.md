@@ -5,7 +5,7 @@ available multi-label B-scan ocular-ultrasound dataset (1,630 images,
 five annotated abnormalities) and a benchmark of four deep-learning backbones
 and three domain-specific foundation models.
 
-- **Project page:** https://sri-kanchi-kamakoti-medical-trust.github.io/OculoBenchmark/
+- **Project page:** https://sri-kanchi-kamakoti-medical-trust.github.io/Oculo/
 - **Dataset:** https://huggingface.co/datasets/SankaraEyeHospital/Oculo
 - **Labels (5 evaluated):** Vitreous Dot Echo (VDE), Membranous Echo (ME),
   Retinal Detachment (RD), Mass Lesion (ML), Abnormal Contour (AC).
